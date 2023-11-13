@@ -1,25 +1,22 @@
-//your JS code here. If required.
-// Get the input elements
-consttextInput = document.getElementById("text");
-constdelayInput = document.getElementById("delay");
+const delayFunction = async () => {
+        const textInput = document.getElementById('text').value;
+        const delayInput = document.getElementById('delay').value;
 
-// Get the output element
-constoutputDiv = document.getElementById("output");
+        if (!textInput || !delayInput) {
+          alert('Please provide both text and delay values.');
+          return;
+        }
 
-// Create the async function
-async function showMessage() {
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = 'Waiting...';
 
- // Get the text and delay values
- consttext = textInput.value;
- constdelay = Number(delayInput.value);
+        try {
+          const delay = parseInt(delayInput);
+          await new Promise(resolve => setTimeout(resolve, delay));
+          outputDiv.innerHTML = textInput;
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
 
- // Wait for the delay
- awaitdelay(delay);
-
- // Show the message
- outputDiv.innerHTML = text;
-}
-
-// Add an event listener to the button
-constbtn = document.getElementById("btn");
-btn.addEventListener("click", showMessage);
+      document.getElementById('btn').addEventListener('click', delayFunction);
