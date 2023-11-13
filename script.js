@@ -1,29 +1,25 @@
 //your JS code here. If required.
-let textn=document.getElementById("text");
-let numbert=document.getElementById("delay");
-let button=document.getElementById("btn");
-let divd=document.getElementById("output");
- 
-async function displayf(textv,delay) {
-	try{
-		 if (!textv || isNaN(delay) || delay < 0) {
-                divd.textContent = "Please enter valid text and delay.";
-                return;
-            }
-		await new Promise((resolve)=>{
-			setTimeout(()=>{
-				divd.textContent=textv;
-			},delay);
-		})
-	}
-	catch{
-		
-	}
-	
+// Get the input elements
+consttextInput = document.getElementById("text");
+constdelayInput = document.getElementById("delay");
+
+// Get the output element
+constoutputDiv = document.getElementById("output");
+
+// Create the async function
+async function showMessage() {
+
+ // Get the text and delay values
+ consttext = textInput.value;
+ constdelay = Number(delayInput.value);
+
+ // Wait for the delay
+ awaitdelay(delay);
+
+ // Show the message
+ outputDiv.innerHTML = text;
 }
-button.addEventListener("click",(e)=>{
-	e.preventDefault();
-	let textv=textn.value;
-	let delay=parseInt(numbert.value)*1000;
-	displayf(textv,delay);
-})
+
+// Add an event listener to the button
+constbtn = document.getElementById("btn");
+btn.addEventListener("click", showMessage);
